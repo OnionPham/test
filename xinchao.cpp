@@ -1,20 +1,18 @@
 #include <iostream>
 using namespace std;
 int main(){
-    int n,m;
-    cin >> n >> m; 
-    if(m > n){
-        cout << -1;
+    int k,n,w;
+    cin >> k >> n >> w;
+    int MoneyNeed = 0;
+    for(int i = 1;i<=w;i++){
+        MoneyNeed += i*k;
+    }
+    if(MoneyNeed < n){
+        cout << 0;
         return 0;
     }
-    int minMoves = (n + 1) / 2;
-    int maxMoves = n;
-    for(int k = minMoves;k <= maxMoves;k++){
-        if( k % m == 0){
-            cout << k << endl;
-            return 0;
-        }
+    else{
+        cout << MoneyNeed - n;
     }
-    cout << -1;
     return 0;
 }
