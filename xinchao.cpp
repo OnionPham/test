@@ -1,12 +1,13 @@
 #include <iostream>
 using namespace std;
 int main(){
-    int a,b,s;
-    cin >> a >> b >> s;
-    int dist = a + b;
-    if (dist > s || (s - dist) % 2 != 0){
-        cout << "No" << endl;
-    } else {
-        cout << "Yes" << endl;
+    long long n,a,b;
+    cin >> n >> a >> b;
+    long long cost;
+    if(b > 2*a){
+        cost = n*a;
+    }else{
+        cost = (n/2) * b + (n % 2) * a;
     }
+    cout << cost << endl;
 }
