@@ -1,17 +1,12 @@
 #include <iostream>
 using namespace std;
 int main(){
-    long long a,b,m;
-    cin >> a >> b >> m;
-    long long pos = 0;
-    for(int i = 1;i<=k;i++){
-        if(k % 2 == 1){
-            pos += a;
-        }
-        else{
-            pos += b;
-        }
+    int a,b,s;
+    cin >> a >> b >> s;
+    int dist = a + b;
+    if (dist > s || (s - dist) % 2 != 0){
+        cout << "No" << endl;
+    } else {
+        cout << "Yes" << endl;
     }
-    cout << pos << endl;
-    return 0;
 }
