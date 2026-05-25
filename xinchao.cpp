@@ -3,8 +3,8 @@ using namespace std;
 int main(){
     int x,y,z;
     cin >> x >> y >> z;
-    x = sqrt((x*z) / y);
-    y = sqrt((y*z) / x);
-    z = sqrt((x*y) / z);
-    cout << 4*(x+y+z) << endl;
+    long long a = sqrt((x*z) / y);
+    long long b = sqrt((y*z) / x);
+    long long c = sqrt((x*y) / z);
+    cout << 4*(a+b+c) << endl;
 }
