@@ -1,44 +1,42 @@
 #include <iostream>
 #include <string>
-#include <iomanip>
 #include <vector>
 #include <algorithm>
+#include <cmath>
+#include <iomanip>
 using namespace std;
-using ll = long long;
-class SinhVien{
-    private:
-        string MaSV, HoTen, class_name, email;
-    public:
-        friend istream& operator >> (istream &in,SinhVien &a);
-        friend ostream& operator << (ostream &out,SinhVien a);
-        string getLop(){
-            return this->class_name;
-        }
+class NhanVien {
+private:
+	string MaNV, HoTen, GioiTinh, NgaySinh, DiaChi, NgayHD;
+	int MaSoThue;
+public:
+	static int cnt;
+	friend istream& operator >> (istream& in, NhanVien& a);
+	friend ostream& operator << (ostream& out, NhanVien a);
 };
-istream& operator >> (istream &in,SinhVien &a){//ham nhap
-    getline(in,a.MaSV);
-    getline(in,a.HoTen);
-    getline(in,a.class_name);
-    getline(in,a.email);
-    return in;
+int cnt = 0;
+istream& operator >> (istream& in, NhanVien& a) {
+	cnt++;
+	a.MaNV = cnt;
+	in.ignore();
+	cout << "Nhap Ten: "; getline(in, a.HoTen);
+	cout << "Gioi Tinh: "; getline(in, a.GioiTinh);
+	cout << "Ngay Sinh: "; getline(in, a.NgaySinh);
+	cout << "dia chi: "; getline(in, a.DiaChi);
+	cout << "MaSoThue"; in >> a.MaSoThue;
+	in.ignore();
+	cout << "Ngay Ki Hop Dong: "; getline(in, a.NgayHD);
+	return in;
 }
-ostream& operator << (ostream &out,SinhVien a){//ham xuat
-    out << a.MaSV << " " << a.HoTen << " " << a.class_name << " " << a.email;
-    return out;
+ostream& operator << (ostream& out, NhanVien a) {
+	out << setfill('0') << setw(5) << a.MaNV << " " << a.HoTen << " " << a.GioiTinh << " " << a.NgaySinh << " " << a.DiaChi << " " << a.MaSoThue << " " << a.NgayHD << endl;
+	return out;
 }
-bool cmp(SinhVien a,SinhVien b){
-    return a.getLop() < b.getLop();
-}
-int main(){
-    int n;cin >> n;
-    cin.ignore();
-    vector<SinhVien> ds(n);
-    for(int i = 0; i < n; i++){
-        cin >> ds[i];
-    }
-    sort(ds.begin(), ds.end(), cmp);
-    for(SinhVien x : ds){
-        cout << x << endl;
-    }
+int main() {
+	int n; cin >> n;
+	cin.ignore();
+	vector<NhanVien> a(n);
+    for(auto &x : a) cin >> x;
+    for(auto x : a) cout << x;
     return 0;
 }
