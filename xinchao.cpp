@@ -4,38 +4,55 @@
 #include <algorithm>
 #include <cmath>
 #include <iomanip>
+#include <sstream>
 using namespace std;
-class NhanVien {
+class GiaoVien {
 private:
-	string MaNV, HoTen, GioiTinh, NgaySinh, DiaChi, NgayHD;
-	int MaSoThue;
+	string HoTen, Nganh, MaGV;
 public:
 	static int cnt;
-	friend istream& operator >> (istream& in, NhanVien& a);
-	friend ostream& operator << (ostream& out, NhanVien a);
+	friend istream& operator >> (istream& in, GiaoVien& a);
+	string ChuanHoa_Nganh();
+    string getName() {
+        return HoTen;
+    }
+    string getMaGV() {
+        return MaGV;
+    }
+	friend ostream& operator << (ostream& out, GiaoVien a);
 };
-int NhanVien::cnt = 0;
-istream& operator >> (istream& in, NhanVien& a) {
-	NhanVien::cnt++;
-	a.MaNV = to_string(NhanVien::cnt);
-	in.ignore();
-	cout << "Nhap Ten: "; getline(in, a.HoTen);
-	cout << "Gioi Tinh: "; getline(in, a.GioiTinh);
-	cout << "Ngay Sinh: "; getline(in, a.NgaySinh);
-	cout << "dia chi: "; getline(in, a.DiaChi);
-	cout << "MaSoThue"; in >> a.MaSoThue;
-	in.ignore();
-	cout << "Ngay Ki Hop Dong: "; getline(in, a.NgayHD);
-	return in;
+string GiaoVien::ChuanHoa_Nganh() {
+	string res = "";
+	stringstream ss(Nganh);
+	string token;
+	while (ss >> token) {
+		res += toupper(token[0]);
+	}
+	return res;
 }
-ostream& operator << (ostream& out, NhanVien a) {
-	out << setfill('0') << setw(5) << a.MaNV << " " << a.HoTen << " " << a.GioiTinh << " " << a.NgaySinh << " " << a.DiaChi << " " << a.MaSoThue << " " << a.NgayHD << endl;
-	return out;
+int GiaoVien::cnt = 0;
+istream& operator >> (istream& in, GiaoVien& a) {
+	GiaoVien::cnt++;
+	a.MaGV = "GV" + to_string(GiaoVien::cnt);
+    cout << "nhap ho ten: ";
+	getline(in, a.HoTen);
+    cout << "nhap nganh: ";
+	getline(in, a.Nganh);
+    return in;
+}
+ostream& operator << (ostream& out, GiaoVien a) {
+    out << a.MaGV << " " << a.HoTen << " " << a.ChuanHoa_Nganh() << endl;
+    return out;
+}
+bool cmp(GiaoVien a, GiaoVien b) {
+    if (a.getName() != b.getName()) return a.getName() < b.getName();
+    return a.getMaGV() < b.getMaGV();
 }
 int main() {
-	int n; cin >> n;
-	vector <NhanVien> a(n);
-	for (auto &x : a) cin >> x;
+	int n; cout << "nhap so luong test case: "; cin >> n; cin.ignore();
+	vector<GiaoVien>a(n);
+	for (auto& x : a)cin >> x;
+	sort(a.begin(), a.end(), cmp);
 	for (auto x : a)cout << x;
 	return 0;
 }
