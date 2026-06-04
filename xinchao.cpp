@@ -19,6 +19,15 @@ public:
     string getMaGV() {
         return MaGV;
     }
+    string getLaseName(){
+        string res = "";
+        stringstream ss(HoTen);
+        string token;
+        while (ss >> token) {
+            res = token;
+        }
+        return res;
+    }
 	friend ostream& operator << (ostream& out, GiaoVien a);
 };
 string GiaoVien::ChuanHoa_Nganh() {
@@ -33,7 +42,7 @@ string GiaoVien::ChuanHoa_Nganh() {
 int GiaoVien::cnt = 0;
 istream& operator >> (istream& in, GiaoVien& a) {
 	GiaoVien::cnt++;
-	a.MaGV = "GV" + to_string(GiaoVien::cnt);
+	a.MaGV = "GV" + (GiaoVien::cnt < 10 ? "0" : "") + to_string(GiaoVien::cnt);
     cout << "nhap ho ten: ";
 	getline(in, a.HoTen);
     cout << "nhap nganh: ";
@@ -45,7 +54,9 @@ ostream& operator << (ostream& out, GiaoVien a) {
     return out;
 }
 bool cmp(GiaoVien a, GiaoVien b) {
-    if (a.getName() != b.getName()) return a.getName() < b.getName();
+    if (a.getLaseName() != b.getLaseName()) {
+        return a.getLaseName() < b.getLaseName();
+    }
     return a.getMaGV() < b.getMaGV();
 }
 int main() {
