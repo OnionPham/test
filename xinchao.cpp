@@ -14,10 +14,10 @@ public:
 	friend istream& operator >> (istream& in, NhanVien& a);
 	friend ostream& operator << (ostream& out, NhanVien a);
 };
-int cnt = 0;
+int NhanVien::cnt = 0;
 istream& operator >> (istream& in, NhanVien& a) {
-	cnt++;
-	a.MaNV = cnt;
+	NhanVien::cnt++;
+	a.MaNV = to_string(NhanVien::cnt);
 	in.ignore();
 	cout << "Nhap Ten: "; getline(in, a.HoTen);
 	cout << "Gioi Tinh: "; getline(in, a.GioiTinh);
@@ -34,9 +34,8 @@ ostream& operator << (ostream& out, NhanVien a) {
 }
 int main() {
 	int n; cin >> n;
-	cin.ignore();
-	vector<NhanVien> a(n);
-    for(auto &x : a) cin >> x;
-    for(auto x : a) cout << x;
-    return 0;
+	vector <NhanVien> a(n);
+	for (auto &x : a) cin >> x;
+	for (auto x : a)cout << x;
+	return 0;
 }
