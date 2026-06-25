@@ -6,31 +6,25 @@
 using namespace std;
 class Solution{
 public:
-    string mergeAlternately(string word1,string word2){
-        int w1 = 0,w2=0;
-        string res = "";
-        while(w1 < word1.size() && w2 < word2.size()){
-            res += word1[w1];
-            w1++;
-            res += word2[w2];
-            w2++;
+   int removeDuplicates(vector<int>&nums){
+        string res;
+        int i = 0,j=1;
+        while(i < nums.size() && j < nums.size()){
+            if(nums[i] == nums[j]){
+                j++;
+            }
+            else{
+                res.push_back(nums[i]);
+                i = j;
+                j++;
+            }
         }
-         while(w1 < word1.size()){
-            res += word1[w1];
-            w1++;
-         }
-         while(w2 < word2.size()){
-            res += word2[w2];
-            w2++;
-         }
-        return res;
-    }
+        return res.size();
+   }
 };
 int main(){
-    string w1,w2;
-    getline(cin,w1);getline(cin,w2);
-    string res;
+    vector<int>nums;
+    for(auto &x : nums)cin >> x;
     Solution sol;
-    res = sol.mergeAlternately(w1,w2);
-    cout << res; 
+    cout << sol.removeDuplicates(nums);
 }
