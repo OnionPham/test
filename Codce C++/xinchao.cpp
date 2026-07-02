@@ -7,21 +7,32 @@
 using namespace std;
 class Solution{
 public:
-    vector<int>dailyTemperatures(vector<int> &temperatures){
-        int n = temperatures.size();
-        vector<int>res(n,0);
+    int evalRPN(vector<string>&tokens){
         stack<int>st;
-        for(int i = n - 2;i>=0;i--){
-            int j = i + 1;
-            while( j < n){
-                if(temperatures[j] > temperatures[i]){
-                    res[i] = j - i;
-                    break;
+        int ketqua = 0;
+        for(int i = 0;i<tokens.size();i++){
+            if(isdigit(stoi(tokens[i]))){
+                st.push(stoi(tokens[i]));
+            }
+            else if (!isdigit(stoi(tokens[i]))){
+                int a = st.top(),b=st.top();
+                int res;
+                if(tokens[i] == "+"){
+                     res = b + a;//+
                 }
-                if(res[j] == 0)break;
-                j += res[j];
+                else if(tokens[i] == "-"){
+                     res = b - a;//-
+                }
+                else if(tokens[i] == "*"){
+                    res = b * a;
+                }
+                else if(tokens[i] == "/"){
+                     res = b / a;
+                }
+                st.push(res);
             }
         }
-        return res;
+        ketqua = st.top();
+        return ketqua;
     }
 };
