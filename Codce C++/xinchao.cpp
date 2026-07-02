@@ -9,15 +9,18 @@ class Solution{
 public:
     vector<int>dailyTemperatures(vector<int> &temperatures){
         int n = temperatures.size();
-        vector<int>res(n);
+        vector<int>res(n,0);
         stack<int>st;
-        for(int i = 0;i<n;i++){
-            while( !st.empty() && temperatures[i] > temperatures[st.top()]){
-                int idx = st.top();
-                st.pop();
-                res[idx] = i - idx;
+        for(int i = n - 2;i>=0;i--){
+            int j = i + 1;
+            while( j < n){
+                if(temperatures[j] > temperatures[i]){
+                    res[i] = j - i;
+                    break;
+                }
+                if(res[j] == 0)break;
+                j += res[j];
             }
-            
         }
         return res;
     }
