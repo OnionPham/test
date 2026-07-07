@@ -6,33 +6,20 @@
 #include <stack>
 using namespace std;
 class Solution{
-public:
-    int trap(vector<int>& height) {
-        int n = height.size();
-        if (n < 3) return 0;
-
-        int left = 0, right = n - 1;
-        int leftMax = 0, rightMax = 0;
-        int water = 0;
-
-        while (left < right) {
-            if (height[left] <= height[right]) {
-                if (height[left] >= leftMax) {
-                    leftMax = height[left];
-                } else {
-                    water += leftMax - height[left];
-                }
-                left++;
-            } else {
-                if (height[right] >= rightMax) {
-                    rightMax = height[right];
-                } else {
-                    water += rightMax - height[right];
-                }
-                right--;
+    public:
+    int largestRectangleArea(vector<int>&heights){
+        int dientich = 0;
+        int n = heights.size();
+        stack<int> st;
+        for (int i = 0; i <= n; i++) {
+            while (!st.empty() && (i == n || heights[st.top()] >= heights[i])) {
+                int height = heights[st.top()];
+                st.pop();
+                int width = st.empty() ? i : i - st.top() - 1;
+                dientich = max(dientich, height * width);
             }
+            st.push(i);
         }
-
-        return water;
+        return dientich;
     }
-};
+}
