@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>RAG Learning Assistant</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- HEADER -->
+        <header class="header">
+
+            <div class="logo">
+                <div class="logo-icon">R</div>
+
+                <div>
+                    <h2>RAG Learning</h2>
+                    <p>AI Learning Assistant</p>
+                </div>
+            </div>
+
+        </header>
+
+
+        <!-- MAIN -->
+        <main class="main">
+
+            <div class="welcome">
+
+                <span class="badge">
+                    ✨ AI POWERED
+                </span>
+
+                <h1>
+                    Bạn muốn tìm hiểu<br>
+                    <span>điều gì hôm nay?</span>
+                </h1>
+
+                <p>
+                    Đặt câu hỏi và hệ thống sẽ tìm kiếm thông tin
+                    phù hợp để đưa ra câu trả lời cho bạn.
+                </p>
+
+            </div>
+
+
+            <!-- QUESTION BOX -->
+
+            <form action="/ask" method="POST" class="question-box">
+
+                <label for="question">
+                    💬 Câu hỏi của bạn
+                </label>
+
+                <textarea
+                    id="question"
+                    name="question"
+                    placeholder="Ví dụ: RAG là gì? Flask dùng để làm gì?"
+                    required
+                ></textarea>
+
+
+                <div class="bottom">
+
+                    <span>
+                        🔎 Tìm kiếm bằng RAG
+                    </span>
+
+                    <button type="submit">
+                        Hỏi ngay
+                        <span>→</span>
+                    </button>
+
+                </div>
+
+            </form>
+
+
+            <!-- EXAMPLE -->
+
+            <div class="examples">
+
+                <p>Câu hỏi gợi ý</p>
+
+                <div class="example-list">
+
+                    <button
+                        onclick="document.getElementById('question').value='RAG là gì?'">
+                        RAG là gì?
+                    </button>
+
+                    <button
+                        onclick="document.getElementById('question').value='Python là gì?'">
+                        Python là gì?
+                    </button>
+
+                    <button
+                        onclick="document.getElementById('question').value='Flask là gì?'">
+                        Flask là gì?
+                    </button>
+
+                </div>
+
+            </div>
+
+        </main>
+
+
+        <!-- FOOTER -->
+
+        <footer>
+
+            <p>
+                RAG Learning Assistant © 2026
+            </p>
+
+        </footer>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,572 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eef6ff,
+            #ffffff
+        );
+
+    min-height: 100vh;
+
+    color: #172033;
+
+}
+
+
+/* =========================
+   CONTAINER
+========================= */
+
+.container {
+
+    width: 100%;
+
+    max-width: 1100px;
+
+    margin: auto;
+
+    min-height: 100vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.header {
+
+    height: 85px;
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 0 30px;
+
+    border-bottom: 1px solid #e5eaf0;
+
+    background: rgba(255,255,255,0.8);
+
+}
+
+
+.logo {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+}
+
+
+.logo-icon {
+
+    width: 45px;
+
+    height: 45px;
+
+    border-radius: 12px;
+
+    background: linear-gradient(
+        135deg,
+        #2563eb,
+        #06b6d4
+    );
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 22px;
+
+    font-weight: bold;
+
+}
+
+
+.logo h2 {
+
+    font-size: 18px;
+
+}
+
+
+.logo p {
+
+    color: #7b8494;
+
+    font-size: 12px;
+
+    margin-top: 3px;
+
+}
+
+
+/* =========================
+   MAIN
+========================= */
+
+.main {
+
+    flex: 1;
+
+    padding: 90px 30px 50px;
+
+}
+
+
+.welcome {
+
+    text-align: center;
+
+    max-width: 700px;
+
+    margin: auto;
+
+}
+
+
+.badge {
+
+    display: inline-block;
+
+    background: #e8f1ff;
+
+    color: #2563eb;
+
+    padding: 8px 15px;
+
+    border-radius: 30px;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+}
+
+
+.welcome h1 {
+
+    font-size: 48px;
+
+    line-height: 1.15;
+
+    margin-top: 25px;
+
+}
+
+
+.welcome h1 span {
+
+    color: #2563eb;
+
+}
+
+
+.welcome p {
+
+    color: #6b7280;
+
+    font-size: 16px;
+
+    line-height: 1.7;
+
+    margin-top: 20px;
+
+}
+
+
+/* =========================
+   QUESTION BOX
+========================= */
+
+.question-box {
+
+    max-width: 750px;
+
+    margin: 45px auto 0;
+
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 15px 40px rgba(37, 99, 235, 0.1);
+
+    border: 1px solid #e5eaf0;
+
+}
+
+
+.question-box label {
+
+    display: block;
+
+    font-weight: bold;
+
+    margin-bottom: 12px;
+
+}
+
+
+textarea {
+
+    width: 100%;
+
+    height: 120px;
+
+    resize: none;
+
+    border: 1px solid #dce2ea;
+
+    border-radius: 12px;
+
+    padding: 15px;
+
+    font-size: 15px;
+
+    font-family: inherit;
+
+    outline: none;
+
+}
+
+
+textarea:focus {
+
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.1);
+
+}
+
+
+.bottom {
+
+    margin-top: 15px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+}
+
+
+.bottom span {
+
+    color: #7b8494;
+
+    font-size: 13px;
+
+}
+
+
+button {
+
+    border: none;
+
+    cursor: pointer;
+
+    font-family: inherit;
+
+}
+
+
+.bottom button {
+
+    background: #2563eb;
+
+    color: white;
+
+    padding: 12px 20px;
+
+    border-radius: 10px;
+
+    font-weight: bold;
+
+    transition: 0.2s;
+
+}
+
+
+.bottom button:hover {
+
+    background: #1d4ed8;
+
+    transform: translateY(-2px);
+
+}
+
+
+.bottom button span {
+
+    color: white;
+
+    margin-left: 5px;
+
+}
+
+
+/* =========================
+   EXAMPLES
+========================= */
+
+.examples {
+
+    max-width: 750px;
+
+    margin: 30px auto;
+
+}
+
+
+.examples > p {
+
+    color: #6b7280;
+
+    font-size: 13px;
+
+    margin-bottom: 12px;
+
+}
+
+
+.example-list {
+
+    display: flex;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+
+}
+
+
+.example-list button {
+
+    background: white;
+
+    border: 1px solid #e0e5ec;
+
+    padding: 10px 15px;
+
+    border-radius: 10px;
+
+    color: #374151;
+
+}
+
+
+.example-list button:hover {
+
+    border-color: #2563eb;
+
+    color: #2563eb;
+
+}
+
+
+/* =========================
+   RESULT PAGE
+========================= */
+
+.result-page {
+
+    flex: 1;
+
+    padding: 70px 30px;
+
+    max-width: 850px;
+
+    width: 100%;
+
+    margin: auto;
+
+}
+
+
+.result-page h1 {
+
+    font-size: 40px;
+
+    margin: 20px 0 35px;
+
+}
+
+
+.card {
+
+    background: white;
+
+    border: 1px solid #e5eaf0;
+
+    border-radius: 18px;
+
+    padding: 25px;
+
+    margin-bottom: 20px;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.04);
+
+}
+
+
+.card-title {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    font-weight: bold;
+
+    margin-bottom: 18px;
+
+}
+
+
+.icon {
+
+    font-size: 20px;
+
+}
+
+
+.question {
+
+    color: #374151;
+
+    line-height: 1.7;
+
+}
+
+
+.answer {
+
+    color: #374151;
+
+    line-height: 1.8;
+
+    font-size: 16px;
+
+}
+
+
+.answer-card {
+
+    border-left: 4px solid #2563eb;
+
+}
+
+
+/* =========================
+   BACK BUTTON
+========================= */
+
+.back-button {
+
+    display: inline-block;
+
+    text-decoration: none;
+
+    color: #2563eb;
+
+    font-weight: bold;
+
+    margin-top: 10px;
+
+}
+
+
+.back-button:hover {
+
+    text-decoration: underline;
+
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+
+    text-align: center;
+
+    padding: 25px;
+
+    color: #9ca3af;
+
+    font-size: 12px;
+
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 600px) {
+
+    .welcome h1 {
+
+        font-size: 35px;
+
+    }
+
+
+    .main {
+
+        padding-top: 60px;
+
+    }
+
+
+    .bottom {
+
+        flex-direction: column;
+
+        gap: 15px;
+
+        align-items: stretch;
+
+    }
+
+
+    .bottom button {
+
+        width: 100%;
+
+    }
+
+}

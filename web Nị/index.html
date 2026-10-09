@@ -1,0 +1,651 @@
+```html
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Gửi Nị 💗</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    overflow: hidden;
+    font-family: "Segoe UI", sans-serif;
+
+    background:
+        radial-gradient(circle at top, #ffe6f0 0%, transparent 40%),
+        linear-gradient(135deg, #fff0f5, #ffd6e7);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: #7a294b;
+}
+
+/* =========================
+   CONTAINER
+========================= */
+
+.container {
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    z-index: 2;
+}
+
+/* =========================
+   TITLE
+========================= */
+
+.title {
+    font-size: clamp(28px, 5vw, 52px);
+    font-weight: 700;
+    margin-bottom: 12px;
+
+    animation: fadeDown 1.2s ease;
+}
+
+.subtitle {
+    font-size: clamp(15px, 2vw, 20px);
+    color: #a34b6b;
+    margin-bottom: 55px;
+
+    animation: fadeDown 1.6s ease;
+}
+
+/* =========================
+   GIFT
+========================= */
+
+.gift-wrapper {
+    width: 190px;
+    height: 180px;
+
+    margin: 0 auto;
+
+    position: relative;
+
+    cursor: pointer;
+
+    animation: float 3s ease-in-out infinite;
+}
+
+.gift {
+    width: 150px;
+    height: 110px;
+
+    background: linear-gradient(
+        135deg,
+        #ff4f81,
+        #e91e63
+    );
+
+    position: absolute;
+    bottom: 10px;
+    left: 20px;
+
+    border-radius: 8px;
+
+    box-shadow:
+        0 18px 30px rgba(170, 40, 90, .25);
+
+    transition: .3s;
+}
+
+/* Ribbon dọc */
+
+.gift::after {
+    content: "";
+
+    position: absolute;
+
+    width: 28px;
+    height: 100%;
+
+    background: #ffd45c;
+
+    left: 61px;
+    top: 0;
+}
+
+/* Nắp */
+
+.lid {
+    width: 165px;
+    height: 35px;
+
+    background: linear-gradient(
+        135deg,
+        #ff6c97,
+        #e91e63
+    );
+
+    position: absolute;
+
+    left: 12px;
+    bottom: 105px;
+
+    border-radius: 7px;
+
+    z-index: 3;
+
+    box-shadow:
+        0 8px 15px rgba(170, 40, 90, .2);
+
+    transition:
+        transform .8s cubic-bezier(.68,-.55,.27,1.55);
+}
+
+/* Ribbon trên nắp */
+
+.lid::after {
+    content: "";
+
+    position: absolute;
+
+    width: 28px;
+    height: 35px;
+
+    background: #ffd45c;
+
+    left: 68px;
+}
+
+/* =========================
+   BOW
+========================= */
+
+.bow {
+    position: absolute;
+
+    left: 50%;
+    bottom: 135px;
+
+    transform: translateX(-50%);
+
+    width: 80px;
+    height: 45px;
+
+    z-index: 5;
+}
+
+.bow-left,
+.bow-right {
+    position: absolute;
+
+    width: 42px;
+    height: 32px;
+
+    background: #ffd45c;
+
+    top: 0;
+
+    border-radius: 50% 50% 10% 50%;
+}
+
+.bow-left {
+    left: 0;
+    transform: rotate(25deg);
+}
+
+.bow-right {
+    right: 0;
+    transform: scaleX(-1) rotate(25deg);
+}
+
+.bow-center {
+    width: 22px;
+    height: 22px;
+
+    background: #f5c735;
+
+    border-radius: 50%;
+
+    position: absolute;
+
+    left: 29px;
+    top: 9px;
+
+    z-index: 2;
+}
+
+/* =========================
+   TEXT UNDER GIFT
+========================= */
+
+.hint {
+    margin-top: 30px;
+
+    font-size: 15px;
+
+    color: #a34b6b;
+
+    animation: pulse 2s infinite;
+}
+
+/* =========================
+   RESULT
+========================= */
+
+.result {
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(255, 226, 237, .96);
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: scale(.8);
+
+    transition:
+        opacity .5s ease,
+        transform .5s ease;
+
+    z-index: 10;
+}
+
+.result.show {
+    opacity: 1;
+    visibility: visible;
+
+    transform: scale(1);
+}
+
+.result h2 {
+    font-size: clamp(55px, 12vw, 130px);
+
+    font-weight: 900;
+
+    color: #e91e63;
+
+    text-shadow:
+        5px 5px 0 #ffd0df;
+
+    animation: naughty .8s cubic-bezier(.68,-.55,.27,1.55);
+}
+
+.result p {
+    margin-top: 20px;
+
+    font-size: 20px;
+
+    color: #8c3657;
+
+    animation: fadeUp 1s ease;
+}
+
+.close-btn {
+    margin-top: 35px;
+
+    border: none;
+
+    background: #e91e63;
+
+    color: white;
+
+    padding: 13px 28px;
+
+    border-radius: 30px;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    transition: .25s;
+}
+
+.close-btn:hover {
+    transform: scale(1.08);
+
+    background: #c2185b;
+}
+
+/* =========================
+   HEARTS
+========================= */
+
+.heart {
+    position: fixed;
+
+    bottom: -30px;
+
+    font-size: 20px;
+
+    pointer-events: none;
+
+    animation: heartFly linear forwards;
+
+    opacity: .7;
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: .5;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeDown {
+    from {
+        opacity: 0;
+        transform: translateY(-25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes naughty {
+    0% {
+        transform: scale(0) rotate(-15deg);
+    }
+
+    70% {
+        transform: scale(1.15) rotate(5deg);
+    }
+
+    100% {
+        transform: scale(1) rotate(0);
+    }
+}
+
+@keyframes heartFly {
+    from {
+        transform:
+            translateY(0)
+            rotate(0deg);
+
+        opacity: .8;
+    }
+
+    to {
+        transform:
+            translateY(-110vh)
+            rotate(360deg);
+
+        opacity: 0;
+    }
+}
+
+/* =========================
+   OPEN ANIMATION
+========================= */
+
+.gift-wrapper.open .lid {
+    transform:
+        translateY(-80px)
+        rotate(-12deg);
+}
+
+.gift-wrapper.open {
+    animation:
+        shake .5s ease,
+        float 3s ease-in-out infinite .5s;
+}
+
+@keyframes shake {
+    0% {
+        transform: rotate(0);
+    }
+
+    20% {
+        transform: rotate(-8deg);
+    }
+
+    40% {
+        transform: rotate(8deg);
+    }
+
+    60% {
+        transform: rotate(-6deg);
+    }
+
+    80% {
+        transform: rotate(6deg);
+    }
+
+    100% {
+        transform: rotate(0);
+    }
+}
+</style>
+</head>
+
+
+<body>
+
+<div class="container">
+
+    <h1 class="title">
+        Hành gửi Nị 💗
+    </h1>
+
+    <p class="subtitle">
+        
+    </p>
+
+
+    <!-- HỘP QUÀ -->
+
+    <div
+        class="gift-wrapper"
+        id="gift"
+        onclick="openGift()"
+    >
+
+        <div class="bow">
+            <div class="bow-left"></div>
+            <div class="bow-right"></div>
+            <div class="bow-center"></div>
+        </div>
+
+        <div class="lid"></div>
+
+        <div class="gift"></div>
+
+    </div>
+
+
+    <p class="hint">
+        🎁 Click vào hộp quà để mở
+    </p>
+
+</div>
+
+
+<!-- =========================
+     RESULT
+========================= -->
+
+<div class="result" id="result">
+
+    <h2>KHÔNG CHO ĐÂU</h2>
+
+    <p>
+        Yêu Nị Mà 🤭
+    </p>
+
+    <button
+        class="close-btn"
+        onclick="closeGift()"
+    >
+        Mở lại 🎁
+    </button>
+
+</div>
+
+
+<script>
+
+/* =========================
+   OPEN GIFT
+========================= */
+
+function openGift() {
+
+    const gift =
+        document.getElementById("gift");
+
+    const result =
+        document.getElementById("result");
+
+
+    gift.classList.add("open");
+
+
+    /* tạo nhiều trái tim */
+
+    createHearts(25);
+
+
+    /* chờ hiệu ứng hộp quà */
+
+    setTimeout(() => {
+
+        result.classList.add("show");
+
+    }, 700);
+}
+//close
+function closeGift() {
+    const gift =
+        document.getElementById("gift");
+    const result =
+        document.getElementById("result");
+    result.classList.remove("show");
+    gift.classList.remove("open");
+}
+//heart
+function createHearts(amount) {
+    for (let i = 0; i < amount; i++) {
+        const heart =
+            document.createElement("div");
+
+        heart.className = "heart";
+        heart.innerHTML =
+            Math.random() > .5
+            ? "💗"
+            : "💕";
+
+
+        heart.style.left =
+            Math.random() * 100 + "vw";
+
+
+        heart.style.fontSize =
+            (15 + Math.random() * 25) + "px";
+
+
+        heart.style.animationDuration =
+            (3 + Math.random() * 4) + "s";
+
+
+        heart.style.animationDelay =
+            Math.random() * .5 + "s";
+
+
+        document.body.appendChild(heart);
+
+
+        setTimeout(() => {
+
+            heart.remove();
+
+        }, 8000);
+    }
+}
+
+
+/* =========================
+   BACKGROUND HEARTS
+========================= */
+
+setInterval(() => {
+
+    const heart =
+        document.createElement("div");
+
+    heart.className = "heart";
+
+    heart.innerHTML =
+        Math.random() > .5
+        ? "♡"
+        : "♥";
+
+
+    heart.style.left =
+        Math.random() * 100 + "vw";
+
+
+    heart.style.fontSize =
+        (12 + Math.random() * 15) + "px";
+
+
+    heart.style.animationDuration =
+        (6 + Math.random() * 5) + "s";
+
+
+    document.body.appendChild(heart);
+
+
+    setTimeout(() => {
+
+        heart.remove();
+
+    }, 11000);
+
+}, 900);
+
+</script>
+
+</body>
+</html>
+```
